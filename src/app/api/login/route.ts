@@ -10,6 +10,7 @@ export async function POST(request: Request) {
     if (loginBody.email && loginBody.password) {
       const { rows } = await sql`SELECT * FROM users WHERE email = ${loginBody.email} AND password = ${loginBody.password};`;
       if (rows.length == 1) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { password, ...user } = rows[0];
         return Response.json(user, { status: 200 });
       }
